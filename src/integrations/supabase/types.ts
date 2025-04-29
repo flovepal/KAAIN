@@ -9,7 +9,38 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      messages: {
+        Row: {
+          client_fingerprint: string | null
+          content: string
+          created_at: string
+          id: string
+          reply_to: string | null
+        }
+        Insert: {
+          client_fingerprint?: string | null
+          content: string
+          created_at?: string
+          id?: string
+          reply_to?: string | null
+        }
+        Update: {
+          client_fingerprint?: string | null
+          content?: string
+          created_at?: string
+          id?: string
+          reply_to?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_reply_to_fkey"
+            columns: ["reply_to"]
+            isOneToOne: false
+            referencedRelation: "messages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

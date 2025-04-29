@@ -3,13 +3,17 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { Message } from "@/types/message";
+import { MessageSquare, Send, X } from "lucide-react";
 
 interface ChatInputProps {
-  onSendMessage: (message: string) => Promise<void>;
+  onSendMessage: (message: string, replyToId: string | null) => Promise<void>;
   loading: boolean;
+  replyTo: Message | null;
+  onCancelReply: () => void;
 }
 
-const ChatInput = ({ onSendMessage, loading }: ChatInputProps) => {
+const ChatInput = ({ onSendMessage, loading, replyTo, onCancelReply }: ChatInputProps) => {
   const [message, setMessage] = useState("");
   const { toast } = useToast();
 
@@ -26,7 +30,7 @@ const ChatInput = ({ onSendMessage, loading }: ChatInputProps) => {
     }
     
     try {
-      await onSendMessage(message);
+      await onSendMessage(message, replyTo?.id || null);
       setMessage("");
     } catch (error) {
       toast({
@@ -38,23 +42,43 @@ const ChatInput = ({ onSendMessage, loading }: ChatInputProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 w-full">
-      <Input
-        placeholder="Type a message..."
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        className="bg-white border-lemon-300 focus-visible:ring-lemon-400"
-        disabled={loading}
-        autoComplete="off"
-      />
-      <Button 
-        type="submit" 
-        className="bg-lemon-400 text-foreground hover:bg-lemon-500"
-        disabled={loading || !message.trim()}
-      >
-        Send
-      </Button>
-    </form>
+    <div className="w-full">
+      {replyTo && (
+        <div className="flex items-center mb-2 px-3 py-1 bg-lemon-100 rounded-md border border-lemon-300">
+          <MessageSquare className="h-3 w-3 mr-2 text-lemon-600" />
+          <span className="text-xs flex-1 truncate">
+            Replying to: {replyTo.content}
+          </span>
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="h-5 w-5 p-0" 
+            onClick={onCancelReply}
+          >
+            <X className="h-3 w-3" />
+          </Button>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="flex gap-2 w-full">
+        <Input
+          placeholder="Type a message..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className="bg-white border-lemon-300 focus-visible:ring-lemon-400"
+          disabled={loading}
+          autoComplete="off"
+        />
+        <Button 
+          type="submit" 
+          className="bg-lemon-400 text-foreground hover:bg-lemon-500 flex items-center gap-1"
+          disabled={loading || !message.trim()}
+        >
+          <Send className="h-3.5 w-3.5" />
+          Send
+        </Button>
+      </form>
+    </div>
   );
 };
 
