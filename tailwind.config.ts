@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -24,6 +25,18 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				lemon: {
+					50: "#FFFBEB",
+					100: "#FEF7CD",
+					200: "#FEEE9E",
+					300: "#FDE570",
+					400: "#F9F871",  // Main lemon color
+					500: "#F4D03F",
+					600: "#D4AC16",
+					700: "#A38413",
+					800: "#725C0D",
+					900: "#413408",
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -84,11 +97,25 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'message-appear': {
+					'0%': { 
+						opacity: '0',
+						transform: 'translateY(10px)' 
+					},
+					'100%': { 
+						opacity: '1',
+						transform: 'translateY(0)' 
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'message-appear': 'message-appear 0.3s ease-out'
+			},
+			backgroundImage: {
+				'lemon-gradient': 'linear-gradient(to right, #FEF7CD, #F9F871, #FEF7CD)'
 			}
 		}
 	},
