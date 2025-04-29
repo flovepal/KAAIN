@@ -1,8 +1,9 @@
 
 import { Message } from "@/types/message";
 import { cn } from "@/lib/utils";
-import { MessageSquare } from "lucide-react";
+import { Copy, MessageSquare } from "lucide-react";
 import { useState } from "react";
+import { toast } from "@/components/ui/use-toast";
 
 interface MessageBubbleProps {
   message: Message;
@@ -10,13 +11,33 @@ interface MessageBubbleProps {
 }
 
 const MessageBubble = ({ message, onReply }: MessageBubbleProps) => {
-  const [showReplyButton, setShowReplyButton] = useState(false);
+  const [showControls, setShowControls] = useState(false);
+  
+  const handleCopy = () => {
+    navigator.clipboard.writeText(message.content)
+      .then(() => {
+        toast({
+          title: "Copied to clipboard",
+          description: "Message has been copied to your clipboard",
+          duration: 2000,
+        });
+      })
+      .catch((error) => {
+        console.error("Could not copy text: ", error);
+        toast({
+          title: "Copy failed",
+          description: "Could not copy text to clipboard",
+          variant: "destructive",
+          duration: 2000,
+        });
+      });
+  };
   
   return (
     <div 
       className="flex flex-col w-full mb-4 animate-message-appear"
-      onMouseEnter={() => setShowReplyButton(true)}
-      onMouseLeave={() => setShowReplyButton(false)}
+      onMouseEnter={() => setShowControls(true)}
+      onMouseLeave={() => setShowControls(false)}
     >
       {message.isReplyTo && (
         <div className="flex justify-center w-full mb-1">
@@ -33,14 +54,23 @@ const MessageBubble = ({ message, onReply }: MessageBubbleProps) => {
             {new Date(message.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </div>
           
-          {showReplyButton && (
-            <button 
-              onClick={() => onReply(message)}
-              className="absolute -bottom-3 right-2 bg-lemon-100 hover:bg-lemon-200 p-1 rounded-full border border-lemon-300 text-xs transition-colors"
-              aria-label="Reply"
-            >
-              <MessageSquare className="h-3 w-3" />
-            </button>
+          {showControls && (
+            <div className="absolute -bottom-3 right-2 flex space-x-1">
+              <button 
+                onClick={handleCopy}
+                className="bg-lemon-100 hover:bg-lemon-200 p-1 rounded-full border border-lemon-300 text-xs transition-colors"
+                aria-label="Copy"
+              >
+                <Copy className="h-3 w-3" />
+              </button>
+              <button 
+                onClick={() => onReply(message)}
+                className="bg-lemon-100 hover:bg-lemon-200 p-1 rounded-full border border-lemon-300 text-xs transition-colors"
+                aria-label="Reply"
+              >
+                <MessageSquare className="h-3 w-3" />
+              </button>
+            </div>
           )}
         </div>
       </div>
