@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -16,6 +16,14 @@ interface ChatInputProps {
 const ChatInput = ({ onSendMessage, loading, replyTo, onCancelReply }: ChatInputProps) => {
   const [message, setMessage] = useState("");
   const { toast } = useToast();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-focus the input when replying to a message
+  useEffect(() => {
+    if (replyTo && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [replyTo]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,6 +70,7 @@ const ChatInput = ({ onSendMessage, loading, replyTo, onCancelReply }: ChatInput
 
       <form onSubmit={handleSubmit} className="flex gap-2 w-full">
         <Input
+          ref={inputRef}
           placeholder="Type a message..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import { Message } from "@/types/message";
 import MessageBubble from "./MessageBubble";
@@ -144,7 +143,7 @@ const Chat = () => {
   return (
     <Card className="flex flex-col bg-lemon-100/60 backdrop-blur-sm border-lemon-200 shadow-md rounded-xl h-[600px] max-h-[80vh] w-full max-w-2xl">
       <div className="flex items-center justify-center p-4 border-b border-lemon-200 bg-lemon-100">
-        <h2 className="font-bold text-xl">Anonymous Chat</h2>
+        <h2 className="font-bold text-xl">Anonymous Kaain</h2>
       </div>
       
       <div className="flex-1 p-4 overflow-y-auto chat-scroll">

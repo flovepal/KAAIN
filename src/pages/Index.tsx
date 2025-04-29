@@ -8,7 +8,7 @@ const Index = () => {
       <header className="w-full py-6 px-4">
         <div className="container max-w-5xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-lemon-gradient">
-            Lemon Chat
+            Kaain
           </h1>
           <p className="text-center mt-2 text-muted-foreground">
             An anonymous chat space - just start typing!
@@ -23,7 +23,7 @@ const Index = () => {
       <footer className="w-full py-4 border-t border-lemon-200">
         <div className="container max-w-5xl mx-auto px-4">
           <p className="text-center text-sm text-muted-foreground">
-            Lemon Chat - Anonymous messaging for everyone
+            Kaain - Anonymous messaging for everyone
           </p>
         </div>
       </footer>
