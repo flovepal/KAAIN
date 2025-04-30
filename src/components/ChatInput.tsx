@@ -11,9 +11,10 @@ interface ChatInputProps {
   loading: boolean;
   replyTo: Message | null;
   onCancelReply: () => void;
+  scrollToMessage?: (id: string) => void;
 }
 
-const ChatInput = ({ onSendMessage, loading, replyTo, onCancelReply }: ChatInputProps) => {
+const ChatInput = ({ onSendMessage, loading, replyTo, onCancelReply, scrollToMessage }: ChatInputProps) => {
   const [message, setMessage] = useState("");
   const { toast } = useToast();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -49,12 +50,21 @@ const ChatInput = ({ onSendMessage, loading, replyTo, onCancelReply }: ChatInput
     }
   };
 
+  const handleReplyClick = () => {
+    if (replyTo && scrollToMessage) {
+      scrollToMessage(replyTo.id);
+    }
+  };
+
   return (
     <div className="w-full">
       {replyTo && (
         <div className="flex items-center mb-2 px-3 py-1 bg-lemon-100 rounded-md border border-lemon-300">
           <MessageSquare className="h-3 w-3 mr-2 text-lemon-600" />
-          <span className="text-xs flex-1 truncate">
+          <span 
+            className="text-xs flex-1 truncate cursor-pointer hover:text-lemon-600 transition-colors"
+            onClick={handleReplyClick}
+          >
             Replying to: {replyTo.content}
           </span>
           <Button 

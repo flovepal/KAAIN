@@ -33,12 +33,6 @@ const MessageBubble = ({ message, onReply, scrollToMessage }: MessageBubbleProps
         });
       });
   };
-
-  const handleReplyClick = () => {
-    if (message.isReplyTo && scrollToMessage) {
-      scrollToMessage(message.isReplyTo.id);
-    }
-  };
   
   return (
     <div 
@@ -47,17 +41,6 @@ const MessageBubble = ({ message, onReply, scrollToMessage }: MessageBubbleProps
       onMouseLeave={() => setShowControls(false)}
       id={`message-${message.id}`}
     >
-      {message.isReplyTo && (
-        <div className="flex justify-start w-full mb-1">
-          <div 
-            onClick={handleReplyClick}
-            className="max-w-xs md:max-w-md px-3 py-1 bg-lemon-100/70 rounded-lg text-xs text-muted-foreground italic border border-lemon-200/50 cursor-pointer hover:bg-lemon-200/70 transition-colors"
-          >
-            Replying to: {message.isReplyTo.content}
-          </div>
-        </div>
-      )}
-      
       <div className="flex justify-start w-full">
         <div className="relative max-w-xs md:max-w-md px-4 py-2 bg-white rounded-2xl shadow-sm border border-lemon-200">
           <p className="text-sm text-left break-words">{message.content}</p>

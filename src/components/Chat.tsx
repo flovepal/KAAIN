@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import { Message } from "@/types/message";
 import MessageBubble from "./MessageBubble";
@@ -187,6 +186,7 @@ const Chat = () => {
           loading={loading}
           replyTo={replyTo}
           onCancelReply={handleCancelReply}
+          scrollToMessage={scrollToMessage}
         />
       </div>
     </Card>
