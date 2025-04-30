@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { Message } from "@/types/message";
-import { Reply, Send, X } from "lucide-react";
+import { MessageSquare, Send, X } from "lucide-react";
 
 interface ChatInputProps {
   onSendMessage: (message: string, replyToId: string | null) => Promise<void>;
@@ -60,7 +60,7 @@ const ChatInput = ({ onSendMessage, loading, replyTo, onCancelReply, scrollToMes
     <div className="w-full">
       {replyTo && (
         <div className="flex items-center mb-2 px-3 py-1 bg-lemon-100 rounded-md border border-lemon-300">
-          <Reply className="h-3 w-3 mr-2 text-lemon-600" />
+          <MessageSquare className="h-3 w-3 mr-2 text-lemon-600" />
           <span 
             className="text-xs flex-1 truncate cursor-pointer hover:text-lemon-600 transition-colors"
             onClick={handleReplyClick}
