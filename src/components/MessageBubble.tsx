@@ -1,7 +1,7 @@
 
 import { Message } from "@/types/message";
 import { cn } from "@/lib/utils";
-import { Copy, MessageSquare } from "lucide-react";
+import { Copy, Reply } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
 
@@ -62,7 +62,7 @@ const MessageBubble = ({ message, onReply, scrollToMessage }: MessageBubbleProps
                 className="bg-lemon-100 hover:bg-lemon-200 p-1 rounded-full border border-lemon-300 text-xs transition-colors"
                 aria-label="Reply"
               >
-                <MessageSquare className="h-3 w-3" />
+                <Reply className="h-3 w-3" />
               </button>
             </div>
           )}
