@@ -1,7 +1,7 @@
 
 import { Message } from "@/types/message";
 import { cn } from "@/lib/utils";
-import { Copy, MessageSquare } from "lucide-react";
+import { Copy, ArrowLeftUp } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
 
@@ -33,6 +33,12 @@ const MessageBubble = ({ message, onReply, scrollToMessage }: MessageBubbleProps
         });
       });
   };
+
+  const handleReplySourceClick = () => {
+    if (message.isReplyTo && scrollToMessage) {
+      scrollToMessage(message.isReplyTo.id);
+    }
+  };
   
   return (
     <div 
@@ -41,6 +47,18 @@ const MessageBubble = ({ message, onReply, scrollToMessage }: MessageBubbleProps
       onMouseLeave={() => setShowControls(false)}
       id={`message-${message.id}`}
     >
+      {message.isReplyTo && (
+        <div className="flex justify-start w-full mb-1">
+          <div 
+            onClick={handleReplySourceClick}
+            className="max-w-xs md:max-w-md px-3 py-1 bg-lemon-100/70 rounded-lg text-xs text-muted-foreground flex items-center gap-1 border border-lemon-200/50 cursor-pointer hover:bg-lemon-200/70 transition-colors"
+          >
+            <ArrowLeftUp className="h-3 w-3 text-lemon-500" />
+            <span className="truncate">Replying to: {message.isReplyTo.content}</span>
+          </div>
+        </div>
+      )}
+      
       <div className="flex justify-start w-full">
         <div className="relative max-w-xs md:max-w-md px-4 py-2 bg-white rounded-2xl shadow-sm border border-lemon-200">
           <p className="text-sm text-left break-words">{message.content}</p>
@@ -62,7 +80,7 @@ const MessageBubble = ({ message, onReply, scrollToMessage }: MessageBubbleProps
                 className="bg-lemon-100 hover:bg-lemon-200 p-1 rounded-full border border-lemon-300 text-xs transition-colors"
                 aria-label="Reply"
               >
-                <MessageSquare className="h-3 w-3" />
+                <ArrowLeftUp className="h-3 w-3" />
               </button>
             </div>
           )}
