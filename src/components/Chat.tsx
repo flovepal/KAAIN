@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import { Message } from "@/types/message";
 import MessageBubble from "./MessageBubble";
@@ -11,6 +12,7 @@ const Chat = () => {
   const [loading, setLoading] = useState(false);
   const [replyTo, setReplyTo] = useState<Message | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   const clientFingerprint = getClientFingerprint();
 
@@ -106,6 +108,20 @@ const Chat = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToMessage = (messageId: string) => {
+    const element = document.getElementById(`message-${messageId}`);
+    if (element && chatContainerRef.current) {
+      // First flash the message to highlight it
+      element.classList.add('bg-lemon-200');
+      setTimeout(() => {
+        element.classList.remove('bg-lemon-200');
+      }, 1000);
+      
+      // Then scroll to it
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   const handleSendMessage = async (content: string, replyToId: string | null) => {
     setLoading(true);
     try {
@@ -146,7 +162,7 @@ const Chat = () => {
         <h2 className="font-bold text-xl">Anonymous Kaain</h2>
       </div>
       
-      <div className="flex-1 p-4 overflow-y-auto chat-scroll">
+      <div className="flex-1 p-4 overflow-y-auto chat-scroll" ref={chatContainerRef}>
         {messages.length === 0 && (
           <div className="flex items-center justify-center h-full text-muted-foreground">
             <p>No messages yet. Start the conversation!</p>
@@ -158,6 +174,7 @@ const Chat = () => {
             key={message.id} 
             message={message} 
             onReply={handleReply}
+            scrollToMessage={scrollToMessage}
           />
         ))}
         
