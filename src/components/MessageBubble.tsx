@@ -1,7 +1,7 @@
 
 import { Message } from "@/types/message";
 import { cn } from "@/lib/utils";
-import { Copy, ArrowLeftUp } from "lucide-react";
+import { Copy, Reply } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/components/ui/use-toast";
 
@@ -53,7 +53,7 @@ const MessageBubble = ({ message, onReply, scrollToMessage }: MessageBubbleProps
             onClick={handleReplySourceClick}
             className="max-w-xs md:max-w-md px-3 py-1 bg-lemon-100/70 rounded-lg text-xs text-muted-foreground flex items-center gap-1 border border-lemon-200/50 cursor-pointer hover:bg-lemon-200/70 transition-colors"
           >
-            <ArrowLeftUp className="h-3 w-3 text-lemon-500" />
+            <Reply className="h-3 w-3 text-lemon-500" />
             <span className="truncate">Replying to: {message.isReplyTo.content}</span>
           </div>
         </div>
@@ -80,7 +80,7 @@ const MessageBubble = ({ message, onReply, scrollToMessage }: MessageBubbleProps
                 className="bg-lemon-100 hover:bg-lemon-200 p-1 rounded-full border border-lemon-300 text-xs transition-colors"
                 aria-label="Reply"
               >
-                <ArrowLeftUp className="h-3 w-3" />
+                <Reply className="h-3 w-3" />
               </button>
             </div>
           )}
