@@ -1,73 +1,87 @@
-# Welcome to your Lovable project
+🕶️ Kaain — Anonymous Chat Platform
+Kaain is a web application I built from scratch that enables real-time, anonymous chatting between users. It’s designed with simplicity, speed, and privacy in mind — no sign-ups, no names, just pure conversation.
 
-## Project info
+🚀 Features
+🕵️ Anonymous Messaging
+Connect and chat without revealing your identity.
 
-**URL**: https://lovable.dev/projects/1e1a0790-a642-4e32-b03f-e308a03d1e11
+🔒 Privacy-First Architecture
+No user tracking or data logging.
 
-## How can I edit this code?
+⚡ Real-Time Chat
+Fast and responsive chat experience powered by efficient frontend rendering.
 
-There are several ways of editing your application.
+💬 Minimal, Clean UI
+Intuitive and distraction-free interface.
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/1e1a0790-a642-4e32-b03f-e308a03d1e11) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
+🛠️ Tech Stack
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Vite – Lightning-fast build tool and development server
 
-## How can I deploy this project?
+React – Component-based frontend library
 
-Simply open [Lovable](https://lovable.dev/projects/1e1a0790-a642-4e32-b03f-e308a03d1e11) and click on Share -> Publish.
+TypeScript – Type-safe JavaScript for scalable development
 
-## Can I connect a custom domain to my Lovable project?
+Tailwind CSS – Utility-first CSS framework for rapid styling
 
-Yes, you can!
+shadcn/ui – Modern, accessible component library
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+📦 Getting Started
+To run Kaain locally, follow these steps:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+1. Clone the Repository
+bash
+Copy
+Edit
+git clone https://github.com/flovepal/KAAIN
+2. Navigate to the Project Folder
+bash
+Copy
+Edit
+cd kaain
+3. Install Dependencies
+Make sure you have Node.js and npm installed. If not, install Node via nvm.
+
+bash
+Copy
+Edit
+npm install
+4. Start the Development Server
+bash
+Copy
+Edit
+npm run dev
+Open your browser and visit http://localhost:5173 to use the app.
+
+🧑‍💻 Development Notes
+You can open the project in your favorite IDE (I use VS Code) and start customizing:
+
+Components are under src/components
+
+Chat logic is in src/lib
+
+Styling is fully handled with Tailwind CSS
+
+Changes are hot-reloaded for an instant preview.
+
+🌍 Deployment
+To deploy Kaain, run:
+
+bash
+Copy
+Edit
+npm run build
+This generates a production-ready dist/ folder which you can deploy to any static hosting provider like:
+
+Vercel
+
+Netlify
+
+Render
+
+GitHub Pages
+
+🌐 Custom Domain
+Once deployed, you can link your own domain via your hosting provider’s DNS configuration.
+
